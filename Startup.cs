@@ -38,6 +38,7 @@ namespace Api_Shop
 
             app.UseAuthorization();
 
+            // Controllers serão responsáveis pelas rotas
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
