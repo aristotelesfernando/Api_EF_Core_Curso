@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Api_Shop.Data;
 using Api_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,21 +25,30 @@ namespace Api_Shop.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult<Category>> Posts([FromBody] Category model)
+        public async Task<ActionResult<Category>> Posts(
+            [FromBody] Category model,
+            [FromServices] DataContext db)
         {
-            return Ok(model);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            db.Categories.Add(model);
+            await db.SaveChangesAsync();
+
+            return model;
         }
 
         [HttpPut]
         [Route("{id:int}")]
         public async Task<ActionResult<Category>> Put(int id, [FromBody] Category model)
         {
-            if (model.Id == id)
-            {
-                return Ok(model);
-            }
+            if (id != model.Id)
+                return NotFound(new { message = "Categoria não encontrada!" });
 
-            return NotFound();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(model);
         }
 
         [HttpDelete]
