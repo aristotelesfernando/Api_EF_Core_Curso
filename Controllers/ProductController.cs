@@ -50,14 +50,22 @@ namespace Api_Shop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(model);
-                await db.SaveChangesAsync();
-                return Ok(model);
+                try
+                {
+                    db.Products.Add(model);
+                    await db.SaveChangesAsync();
+                    return Ok(model);
+                }
+                catch (System.Exception ex)
+                {
+                    return BadRequest(new { message = $"Ocorreu um erro ao criar um novo produto. Erro: {ex.Message}" });
+                }
             }
             else
             {
                 return BadRequest(ModelState);
             }
         }
+
     }
 }
