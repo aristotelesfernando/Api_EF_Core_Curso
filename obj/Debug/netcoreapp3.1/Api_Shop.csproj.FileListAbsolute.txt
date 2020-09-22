@@ -60,3 +60,4 @@ E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\runtimes\win-
 E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
