@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api_Shop.Data;
 using Api_Shop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace Api_Shop.Controllers
     {
         [HttpGet]
         [Route("")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<Category>>> Get([FromServices] DataContext db)
         {
             var categories = await db.Categories.AsNoTracking().ToListAsync();
@@ -20,6 +22,7 @@ namespace Api_Shop.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Category>> GetById(
             int id,
             [FromServices] DataContext db)
@@ -34,6 +37,7 @@ namespace Api_Shop.Controllers
 
         [HttpPost]
         [Route("")]
+        [Authorize(Roles = "employee")]
         public async Task<ActionResult<Category>> Posts(
             [FromBody] Category model,
             [FromServices] DataContext db)
@@ -55,6 +59,7 @@ namespace Api_Shop.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
+        [Authorize(Roles = "employee")]
         public async Task<ActionResult<Category>> Put(
             int id,
             [FromServices] DataContext db,
@@ -84,6 +89,7 @@ namespace Api_Shop.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "employee")]
         public async Task<ActionResult<Category>> Delete(
             int id,
             [FromServices] DataContext db)
@@ -106,8 +112,6 @@ namespace Api_Shop.Controllers
             {
                 return BadRequest(new { message = $"ERRO! Não foi possível remover a categoria: {ex.Message}" });
             }
-
-            return Ok();
         }
     }
 }
