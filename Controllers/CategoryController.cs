@@ -8,12 +8,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api_Shop.Controllers
 {
-    [Route("categories")]
+    [Route("v1/categories")]
     public class CategoryController : ControllerBase
     {
         [HttpGet]
         [Route("")]
         [AllowAnonymous]
+        [ResponseCache(VaryByHeader = "User-Agent", Location = ResponseCacheLocation.Any, Duration = 30)]
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] -- para métodos que não tenham cache
+        // usado quando no startup.cs, tiver usado services.AddResponseCaching();
         public async Task<ActionResult<List<Category>>> Get([FromServices] DataContext db)
         {
             var categories = await db.Categories.AsNoTracking().ToListAsync();
@@ -87,16 +90,12 @@ namespace Api_Shop.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route("{id:int}")]
-        [Authorize(Roles = "employee")]
-        public async Task<ActionResult<Category>> Delete(
-            int id,
-            [FromServices] DataContext db)
+        public async Task<ActionResult<Category>> Delete([FromServices] DataContext db, int id)
         {
             var category = await db
                 .Categories
                 .FirstOrDefaultAsync(x => x.Id == id);
+
             if (category == null)
             {
                 return NotFound(new { message = "Categoria não encontrada!" });
@@ -110,7 +109,7 @@ namespace Api_Shop.Controllers
             }
             catch (System.Exception ex)
             {
-                return BadRequest(new { message = $"ERRO! Não foi possível remover a categoria: {ex.Message}" });
+                return BadRequest(new { message = $"Não foi possivel remover a categoria devido ao erro {ex.Message}" });
             }
         }
     }

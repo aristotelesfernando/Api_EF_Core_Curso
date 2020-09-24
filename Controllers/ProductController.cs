@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api_Shop.Controllers
 {
-    [Route("products")]
+    [Route("v1/products")]
     public class ProductController : ControllerBase
     {
         #region Todas as maneiras possíveis de listar produtos
@@ -119,7 +119,7 @@ namespace Api_Shop.Controllers
 
             try
             {
-                db.Categories.Remove(product);
+                db.Products.Remove(product);
                 await db.SaveChangesAsync();
                 return Ok(new { message = "Produto removido!" });
             }
