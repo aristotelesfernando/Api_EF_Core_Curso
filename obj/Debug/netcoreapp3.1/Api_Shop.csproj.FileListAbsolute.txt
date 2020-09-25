@@ -61,3 +61,8 @@ E:\src\Balta.io-cursos\curso_7194\Api_Shop\obj\Debug\netcoreapp3.1\staticwebasse
 E:\src\Balta.io-cursos\curso_7194\Api_Shop\obj\Debug\netcoreapp3.1\Api_Shop.dll
 E:\src\Balta.io-cursos\curso_7194\Api_Shop\obj\Debug\netcoreapp3.1\Api_Shop.pdb
 E:\src\Balta.io-cursos\curso_7194\Api_Shop\obj\Debug\netcoreapp3.1\Api_Shop.genruntimeconfig.cache
+E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\src\Balta.io-cursos\curso_7194\Api_Shop\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\src\Balta.io-cursos\curso_7194\Api_Shop\obj\Debug\netcoreapp3.1\Api_Shop.MvcApplicationPartsAssemblyInfo.cs

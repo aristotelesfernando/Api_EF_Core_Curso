@@ -90,6 +90,9 @@ namespace Api_Shop.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("{id:int}")]
+        [Authorize(Roles = "employee")]
         public async Task<ActionResult<Category>> Delete([FromServices] DataContext db, int id)
         {
             var category = await db
