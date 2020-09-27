@@ -23,8 +23,8 @@ namespace Api_Shop.Controllers
 
         [HttpPost]
         [Route("")]
-        [AllowAnonymous]
         //[Authorize(Roles = "manager")]
+        [AllowAnonymous]
         public async Task<ActionResult<User>> Post(
                     [FromServices] DataContext db,
                     [FromBody] User model
@@ -37,8 +37,11 @@ namespace Api_Shop.Controllers
 
             try
             {
+                model.Role = "employee";
                 db.Users.Add(model);
                 await db.SaveChangesAsync();
+
+                model.Password = "";
                 return Ok(model);
             }
             catch (System.Exception ex)
@@ -96,6 +99,8 @@ namespace Api_Shop.Controllers
             }
 
             var token = TokenService.GenerateToken(user);
+
+            user.Password = "";
             return new
             {
                 user = user,
